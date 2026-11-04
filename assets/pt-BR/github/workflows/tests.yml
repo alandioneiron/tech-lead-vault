@@ -1,0 +1,17 @@
+name: tests
+on:
+  push:
+    branches: ["{{MAIN_BRANCH}}", "{{DEV_BRANCH}}"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Acrescente aqui o passo de preparação da sua stack (setup-node, setup-python, ...).
+      - name: Rodar testes
+        run: {{TEST_COMMAND}}

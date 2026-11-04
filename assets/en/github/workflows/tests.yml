@@ -1,0 +1,17 @@
+name: tests
+on:
+  push:
+    branches: ["{{MAIN_BRANCH}}", "{{DEV_BRANCH}}"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Add the setup step for your stack here (setup-node, setup-python, ...).
+      - name: Run tests
+        run: {{TEST_COMMAND}}
