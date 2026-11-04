@@ -34,6 +34,29 @@ DEFAULTS = {
 }
 
 
+def setup_steps(test_command):
+    """CI preparation steps inferred from the test command (empty when unknown)."""
+    cmd = (test_command or "").strip()
+    first = cmd.split()[0] if cmd else ""
+    steps = []
+    if first in ("npm", "npx", "pnpm", "yarn", "node"):
+        steps = ["- uses: actions/setup-node@v4", "  with:", "    node-version: 20"]
+        if first == "pnpm":
+            steps += ["- run: npm install -g pnpm", "- run: pnpm install --frozen-lockfile"]
+        elif first == "yarn":
+            steps += ["- run: yarn install --frozen-lockfile"]
+        else:
+            steps += ["- run: npm ci"]
+    elif first in ("pytest", "python", "python3", "uv"):
+        steps = ["- uses: actions/setup-python@v5", "  with:", "    python-version: '3.12'",
+                 "- run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi; pip install pytest"]
+    elif first == "go":
+        steps = ["- uses: actions/setup-go@v5", "  with:", "    go-version: stable"]
+    elif first in ("dotnet",):
+        steps = ["- uses: actions/setup-dotnet@v4", "  with:", "    dotnet-version: 8.0.x"]
+    return "".join("      " + s + "\n" for s in steps)
+
+
 def render(text, cfg):
     flags = {"ROLES": cfg["roles"], "DEVENV": cfg["dev_env"]}
     for name, on in flags.items():
@@ -45,6 +68,7 @@ def render(text, cfg):
         "DATE": cfg["date"],
         "VERSION": cfg["initial_version"],
         "TEST_COMMAND": cfg["test_command"] or "echo 'no tests yet'",
+        "SETUP_STEPS": setup_steps(cfg["test_command"]),
         "OWNER": cfg["owner"],
         "REPO": cfg["repo"],
         "VAULT_DIR": cfg["vault_dir"],
@@ -62,6 +86,8 @@ def destinations(cfg, lang_dir):
     for src in sorted((lang_dir / "vault").rglob("*.md")):
         yield src, vault_prefix / src.relative_to(lang_dir / "vault")
     yield lang_dir / "CLAUDE.md", Path("CLAUDE.md")
+    yield SKILL / "assets" / "gitignore", Path(".gitignore")
+    yield SKILL / "assets" / "gitattributes", Path(".gitattributes")
     gh = lang_dir / "github"
     mapping = {
         "ISSUE_TEMPLATE/task.md": ".github/ISSUE_TEMPLATE/task.md",
@@ -80,6 +106,9 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true")
     a = ap.parse_args()
+    # Windows consoles default to a legacy code page; accented file names must print correctly.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
 
     cfg = dict(DEFAULTS)
     cfg.update(json.loads(Path(a.config).read_text(encoding="utf-8")))

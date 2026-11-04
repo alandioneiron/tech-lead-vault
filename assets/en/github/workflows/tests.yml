@@ -12,6 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # Add the setup step for your stack here (setup-node, setup-python, ...).
-      - name: Run tests
+{{SETUP_STEPS}}      - name: Run tests
         run: {{TEST_COMMAND}}

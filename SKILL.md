@@ -22,13 +22,13 @@ Instructions here are in English. Documentation the user will read is generated 
 
 Never create anything before the user approves the plan. Never ask for or store secrets (tokens, passwords, keys); `gh` uses the user's own login.
 
-1. **Detect** what exists (`git rev-parse`, `git remote -v`, `gh auth status`, existing `docs/`, `CLAUDE.md`, `.obsidian/`). Pre-fill answers from this so the user only confirms.
+1. **Detect** what exists (`git rev-parse`, `git remote -v`, `gh auth status`, existing `docs/`, `CLAUDE.md`, `.obsidian/`). Pre-fill answers from this so the user only confirms. If `gh` is missing or not logged in, say so up front: the vault and CLAUDE.md still work, but the GitHub steps need it (install from https://cli.github.com, then the user runs `gh auth login` themselves; never handle their token).
 2. **Ask** the questions in `references/install-questionnaire.md`, using the AskUserQuestion tool when available, at most 4 questions per call, in the order given. Skip those already answered by detection.
 3. **Write the config** as JSON (schema in the questionnaire) to a scratch location outside the repo.
 4. **Show the plan**: run `python <skill>/scripts/scaffold.py --config <cfg> --dry-run` and list the GitHub steps that will run. Wait for an explicit OK.
 5. **Scaffold**: run the same command without `--dry-run`. It never overwrites existing files.
 6. **GitHub setup** (only if the user opted in), one step at a time, confirming each before running it. Commands and order are in `references/github-workflow.md`. Wrappers: `scripts/gh_setup.sh <step>`.
-7. **Commit** the scaffold on a branch or on `main` (as the user prefers) and push if a remote exists. Fill the first Handoff and the first Session Log line.
+7. **Commit the scaffold first, alone** (`git add -A && git commit -m "chore: tech-lead-vault scaffold"`), before any task work, and push if a remote exists (no remote: record "push pending" in the Handoff). With a dev environment, then create `dev` from `main`. Fill the first Handoff and the first Session Log line.
 8. Tell the user what was created and how to start (open the vault in Obsidian, open a first task).
 
 ## The non-negotiable rules (they go into the project's CLAUDE.md)
@@ -65,5 +65,5 @@ Details for each in `references/daily-flows.md`; the short form:
 
 - `scripts/scaffold.py` - builds vault, CLAUDE.md and `.github/` files from a config (idempotent, `--dry-run`).
 - `scripts/gh_setup.sh` - one subcommand per GitHub step (`labels`, `milestones`, `project`, `protect`, `status`).
-- `references/` - questionnaire, rules, GitHub workflow, releases, daily flows, model routing, vault layout.
+- `references/` - questionnaire, rules, GitHub workflow, releases, daily flows, model routing, vault structure (`vault-structure.md`).
 - `assets/en/`, `assets/pt-BR/` - vault notes, templates, issue/PR templates, CI workflow in each language.

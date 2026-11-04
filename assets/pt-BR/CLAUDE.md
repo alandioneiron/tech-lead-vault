@@ -6,11 +6,13 @@
 {{PROJECT_SUMMARY}}
 
 A documentação fica num vault do Obsidian (`{{VAULT_DIR}}`), ligada por `[[wikilinks]]`. Comece pela [[Home]].
+
 <!-- IF:ROLES -->
 ## Papéis e modelos (roteamento obrigatório)
 - **Tech Lead** (modelo mais capaz): planejamento, arquitetura, decisões, tarefas ambíguas/críticas/de segurança, revisão final. Coordena com o usuário.
 - **Devs / QA** (modelos mais baratos): implementação e testes de tarefas bem definidas.
 - Antes de delegar, escolha o modelo de menor custo capaz de fazer bem, seguindo o [[Roteamento de Modelos]]. Se delegar custar ~o mesmo que fazer, o Tech Lead faz.
+
 <!-- ENDIF:ROLES -->
 ## Regras INEGOCIÁVEIS de processo
 

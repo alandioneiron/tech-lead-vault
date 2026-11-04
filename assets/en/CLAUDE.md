@@ -6,11 +6,13 @@
 {{PROJECT_SUMMARY}}
 
 The documentation lives in an Obsidian vault (`{{VAULT_DIR}}`), linked with `[[wikilinks]]`. Start at [[Home]].
+
 <!-- IF:ROLES -->
 ## Roles and models (mandatory routing)
 - **Tech Lead** (most capable model): planning, architecture, decisions, ambiguous/critical/security work, final review. Coordinates with the user.
 - **Devs / QA** (cheaper models): implementation and tests of well-defined tasks.
 - Before delegating, pick the cheapest model able to do the task well, following [[Model Routing]]. If delegating costs about as much as doing it, the Tech Lead does it.
+
 <!-- ENDIF:ROLES -->
 ## Non-negotiable process rules
 

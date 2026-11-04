@@ -1,0 +1,35 @@
+# Secrets - never commit (rule 8 of CLAUDE.md)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.pfx
+*.p12
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+secrets.*
+credentials.*
+
+# Dependencies / build
+node_modules/
+.venv/
+venv/
+__pycache__/
+dist/
+build/
+
+# Obsidian: volatile UI state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# Claude Code: local config
+.claude/settings.local.json
+
+# OS / temporary
+*.log
+Thumbs.db
+.DS_Store

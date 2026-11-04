@@ -3,9 +3,12 @@ tags: [template, tarefa]
 ---
 # Tarefa: <título>
 
-- **Issue:** #<n>
+- **Issue:** #<n> (ou `pendente`, ver abaixo)
+- **Branch:** `task/<n>-<slug>`
 - **Fase / milestone:** ([[Roteiro]])
-- **Modelo escolhido:** (justifique pelo [[Roteamento de Modelos]] se os papéis estiverem ligados; soma dos 3 eixos)
+<!-- IF:ROLES -->
+- **Roteamento:** ambiguidade _ + contexto _ + risco _ = _ -> modelo: _ ([[Roteamento de Modelos]])
+<!-- ENDIF:ROLES -->
 - **Spec:** [[ ]]
 - **Critérios de aceite:**
   - [ ] ...
@@ -13,9 +16,12 @@ tags: [template, tarefa]
 ## Passos
 - [ ] ...
 
+## Pendente no GitHub
+(comandos ainda não rodados porque faltou o `gh` ou o remoto; rode-os e apague esta seção)
+
 ## Processo (obrigatório)
 - [ ] Docs de conhecimento lidos
 - [ ] Documentação viva atualizada ([[Diário de Desenvolvimento]], spec, [[Changelog]])
 - [ ] Checklist marcado item a item
-- [ ] [[Definition of Done]]
+- [ ] DoD: cada linha da [[Definition of Done]] conferida para esta tarefa
 - [ ] [[Log de Sessões de IA]]
