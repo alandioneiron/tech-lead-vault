@@ -18,7 +18,7 @@ English version: [README.md](README.md)
 Copie a pasta para o diretório de skills:
 
 ```bash
-git clone <url-deste-repositorio> ~/.claude/skills/tech-lead-vault
+git clone https://github.com/alandioneiron/tech-lead-vault.git ~/.claude/skills/tech-lead-vault
 ```
 
 (Ou copie a pasta do repositório para `~/.claude/skills/tech-lead-vault`, ou use um plugin que empacote skills.) Requisitos: Python 3 para o script de montagem; `gh` (GitHub CLI, logado com `gh auth login`) para os passos do GitHub.
