@@ -18,7 +18,7 @@ Portuguese version: [README.pt-BR.md](README.pt-BR.md)
 Copy the folder into your skills directory:
 
 ```bash
-git clone <this-repo-url> ~/.claude/skills/tech-lead-vault
+git clone https://github.com/alandioneiron/tech-lead-vault.git ~/.claude/skills/tech-lead-vault
 ```
 
 (Or copy the repository folder to `~/.claude/skills/tech-lead-vault`, or add it through a plugin that bundles skills.) Requirements: Python 3 for the scaffold script; `gh` (GitHub CLI, logged in with `gh auth login`) for the GitHub steps.
