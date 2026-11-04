@@ -43,7 +43,7 @@ case "$step" in
     done
     ;;
   project)
-    # needs the 'project' token scope: the user runs `gh auth refresh -s project` if missing
+    # needs the 'project' token scopes: the user runs `gh auth refresh -s project,read:project` if missing
     title="${repo##*/} board"
     gh project create --owner "$owner" --title "$title" --format json
     echo "Add the Status options To do / In progress / In dev / Awaiting OK / In production in the project settings,"
@@ -58,7 +58,8 @@ case "$step" in
     else
       rr='{"required_approving_review_count":0}'
     fi
-    gh api -X PUT "repos/$repo/branches/main/protection" --input - <<JSON
+    vis=$(gh repo view "$repo" --json visibility -q .visibility 2>/dev/null || echo "")
+    if ! out=$(gh api -X PUT "repos/$repo/branches/main/protection" --input - 2>&1 <<JSON
 {
   "required_status_checks": {"strict": true, "contexts": ["$check"]},
   "enforce_admins": false,
@@ -68,6 +69,15 @@ case "$step" in
   "allow_deletions": false
 }
 JSON
+    ); then
+      if echo "$out" | grep -q "Upgrade to GitHub Pro"; then
+        echo "NOT APPLIED: branch protection on a $vis repository needs a paid plan (GitHub Pro/Team) or a public repository." >&2
+        echo "Until then the rule is procedural: never push to main; merge only through an approved PR." >&2
+        exit 3
+      fi
+      echo "$out" >&2; exit 1
+    fi
+    echo "main protected (PR required, status check '$check', no force-push, no deletion)"
     ;;
   *)
     echo "unknown step: $step" >&2

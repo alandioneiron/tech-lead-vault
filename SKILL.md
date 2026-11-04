@@ -15,8 +15,18 @@ Instructions here are in English. Documentation the user will read is generated 
 
 ## Entry point: which mode?
 
-1. No `CLAUDE.md` mentioning this method in the project, or the user asks to set up → **Install** (below).
-2. Otherwise read the project's `CLAUDE.md`, the Handoff note and the checklist of the current phase, then follow the matching **Daily flow**.
+1. The project's `CLAUDE.md` already has a `tech-lead-vault` section → read it, the Handoff note and the checklist of the current phase, then follow the matching **Daily flow**.
+2. The project already has its own process (a `CLAUDE.md` with rules, a vault or `docs/` with decisions, logs or a handoff) but no `tech-lead-vault` section → **Adopt** (below). Never scaffold over an existing process.
+3. Nothing of that → **Install** (below).
+
+## Adopt (project that already has a process)
+
+The existing notes, names and rules win; the method fills only the gaps.
+
+1. **Map** what exists to the method's pieces: rules (CLAUDE.md), handoff, decision log (ADRs), journal/changelog, session log, checklists and Definition of Done, task template, backlog/roadmap, dev → production flow, GitHub usage (issues, PRs, CI, releases). Use the project's real note names; do not rename or duplicate them.
+2. **Show the gap list** to the user: what is already covered (and where), what is missing, and the smallest additions that close the gaps (for example: CI with the tests, PR template with the project's own DoD, labels, SemVer tags/releases, the `Pending on GitHub` convention). Wait for an OK. If the user has already given a standing OK for adopting the method, proceed with additions that are local files only, and keep anything outward-facing (creating repos, pushing to `main`, branch protection, releases, deploys) for an explicit OK.
+3. **Add** only what was approved, with `scaffold.py --dry-run` to see which files it would add; copy pieces by hand when the project's names differ, never with `--force` over existing files.
+4. **Record** the adoption: append a short `## tech-lead-vault` section to the project's `CLAUDE.md` (method in use, which project notes play which role, what was deliberately kept different), an ADR in the project's decision log, and a line in its session log/handoff.
 
 ## Install (first use in a project)
 

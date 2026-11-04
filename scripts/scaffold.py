@@ -42,11 +42,11 @@ def setup_steps(test_command):
     if first in ("npm", "npx", "pnpm", "yarn", "node"):
         steps = ["- uses: actions/setup-node@v4", "  with:", "    node-version: 20"]
         if first == "pnpm":
-            steps += ["- run: npm install -g pnpm", "- run: pnpm install --frozen-lockfile"]
+            steps += ["- run: npm install -g pnpm", "- run: if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; else pnpm install; fi"]
         elif first == "yarn":
-            steps += ["- run: yarn install --frozen-lockfile"]
+            steps += ["- run: if [ -f yarn.lock ]; then yarn install --frozen-lockfile; else yarn install; fi"]
         else:
-            steps += ["- run: npm ci"]
+            steps += ["- run: if [ -f package-lock.json ]; then npm ci; else npm install; fi"]
     elif first in ("pytest", "python", "python3", "uv"):
         steps = ["- uses: actions/setup-python@v5", "  with:", "    python-version: '3.12'",
                  "- run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi; pip install pytest"]

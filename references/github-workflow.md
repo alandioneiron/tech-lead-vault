@@ -15,18 +15,18 @@ One per planned version (for example `v0.1.0`, `v0.2.0`).
 
 ## 3. Projects board (`project`)
 Single-select `Status` field: **To do -> In progress -> In dev -> Awaiting OK -> In production**.
-If the token lacks the `project` scope, tell the user to run `gh auth refresh -s project` (do not run it for them).
+If the token lacks the `project` scope, tell the user to run `gh auth refresh -s project,read:project` (do not run it for them).
 
 ## 4. Templates
 Copied by the scaffold: `.github/ISSUE_TEMPLATE/task.md` (from the task template) and `.github/pull_request_template.md` (Definition of Done as checkboxes).
 
 ## 5. Branch protection (`protect`)
-On `main`: require a pull request, require the `tests` status check, no force-push, no deletion. With `approval=team`, require 1 review; with `approval=owner`, the owner merges. Some plans do not support protection on private repos; report that instead of failing silently.
+On `main`: require a pull request, require the `tests` status check, no force-push, no deletion. With `approval=team`, require 1 review; with `approval=owner`, the owner merges. On the free plan GitHub refuses protection on private repositories (`gh_setup.sh protect` exits 3 with a clear message). Tell the user, and record in CLAUDE.md that main is protected by procedure only (never push to main; merge only through an approved PR) until they upgrade or make the repo public.
 
 ## 6. CI
 `.github/workflows/tests.yml` runs only the tests on push and PR. **No secrets and no production deploy in CI**: deploy stays a human-approved step run from the tag (see `releases.md`).
 
 ## Conventions
-- Branches `feat/<issue>-<slug>`, `fix/<issue>-<slug>`.
+- Branches `task/<issue>-<slug>`, one per task (see `daily-flows.md`).
 - PR title in conventional-commit style; body has `Closes #<n>`, the vault note link, and the ticked DoD.
 - State follows the board: merged into `dev` = in-dev; PR `dev -> main` open = awaiting-ok; deployed = in-production, then close.
