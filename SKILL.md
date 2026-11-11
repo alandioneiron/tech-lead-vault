@@ -56,6 +56,7 @@ The generated `CLAUDE.md` is the contract future sessions load automatically. De
 9. **Dates are `YYYY-MM-DD`.**
 10. **Organization-neutral product code, two repos.** For a project built for a company, the product repo carries no reference to the company. Company-specific material lives in a separate private company repo, and every change updates both repos in the same task. Details below.
 11. **Rule changes are shared.** When the user sets or changes a process rule, record it in this skill and the project's `CLAUDE.md`, and tell every other open Claude session. Details below.
+12. **Front ends are tested end to end.** A UI change is done only when e2e tests pass, for example Playwright against the app or a mocked backend. Build, lint and manual screenshots are not enough. Visual changes update the screenshot baselines, and someone looks at them before the commit. Rule set by the user on 2026-11-11, for all projects.
 
 ## Product repo and company repo (rules 10 and 11)
 

@@ -30,6 +30,7 @@ The documentation lives in an Obsidian vault (`{{VAULT_DIR}}`), linked with `[[w
     - **Company repo (private):** the operations vault, inventories and branding files.
     - **On every change:** both repos are updated in the same task, and the product diff is checked against the company blocklist before each commit.
 11. **Rule changes are shared.** A new or changed rule goes into the `tech-lead-vault` skill and this `CLAUDE.md`, and every other open session gets a short message about it.
+12. **Front ends are tested end to end.** A UI change is done only when e2e tests pass (Playwright or similar), not just build, lint and manual screenshots. Visual changes update the screenshot baselines, and someone looks at them before the commit.
 
 ## GitHub is the workflow
 The issue holds the STATUS; the vault holds the KNOWLEDGE. Link each issue to its checklist/spec note and back. Release versions follow SemVer (starting at {{VERSION}}); see [[Dev to Production Flow]].

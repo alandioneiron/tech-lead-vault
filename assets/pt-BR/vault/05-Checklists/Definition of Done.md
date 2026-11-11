@@ -6,6 +6,7 @@ tags: [checklist, dod]
 Nada é "concluído" até todos os itens estarem marcados. Vale para qualquer agente.
 
 - [ ] Requisito/spec atendido e demonstrado (teste ou evidência)
+- [ ] Frontend: testes e2e passando (Playwright ou equivalente); mudança visual com as capturas de referência atualizadas e conferidas
 - [ ] Código revisado (pelo Tech Lead, se os papéis estiverem ligados)
 - [ ] Testes escritos e passando (ou justificado)
 - [ ] Sem segredos em código, commits ou logs

@@ -30,6 +30,7 @@ A documentação fica num vault do Obsidian (`{{VAULT_DIR}}`), ligada por `[[wik
     - **Repositório da empresa (privado):** o vault de operação, os inventários e os arquivos de marca.
     - **A cada mudança:** os dois repositórios são atualizados na mesma tarefa, e o diff do produto passa pela lista de bloqueio da empresa antes do commit.
 11. **Mudança de regra é compartilhada.** Regra nova ou alterada vai para a skill `tech-lead-vault` e para este `CLAUDE.md`, e todas as outras sessões abertas recebem um aviso curto.
+12. **Frontend testado com e2e.** Mudança de tela só termina com os testes e2e passando (Playwright ou equivalente), e não só com build, lint e capturas manuais. Mudança visual atualiza as capturas de referência, conferidas antes do commit.
 
 ## O GitHub é o fluxo de trabalho
 A issue guarda o STATUS; o vault guarda o CONHECIMENTO. Ligue cada issue à sua nota de checklist/spec e vice-versa. As versões seguem SemVer (começando em {{VERSION}}); ver [[Fluxo de Desenvolvimento]].
