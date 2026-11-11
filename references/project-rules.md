@@ -13,6 +13,8 @@ These are written into the project's `CLAUDE.md` so every future session loads t
 | 7 | **Commit + push after each progress step.** Docs-only commits add only the docs (no blind `git add -A` while other agents edit code). | Work survives a crash and is reviewable. |
 | 8 | **Never commit secrets** (keys, tokens, credentials, `.env`). Keep `.gitignore` protecting them. | A leaked secret in history is a permanent incident. |
 | 9 | **Dates as `YYYY-MM-DD`.** | Unambiguous across locales and sortable. |
+| 10 | **Organization-neutral product code, two repos.** For a company project, the product repo has no company name, logo, domain, IP, server or people's names; what must name the company comes from configuration editable after install. Company material (operations vault, inventories, branding files) lives in a private company repo. Every change updates both repos in the same task, and the staged product diff is grepped against the company blocklist before each commit. | The product can be installed anywhere, and rebranded or handed over, without leaking the company. The installation's knowledge still has a versioned home. |
+| 11 | **Rule changes are shared.** A new or changed process rule goes into this skill, meaning `SKILL.md`, this table and both `CLAUDE.md` templates, and into the project's `CLAUDE.md`. Every other open Claude session gets one short message about it. | Sessions start with empty context. A rule that lives in one chat is lost in the others. |
 
 ## Session start (goes into CLAUDE.md)
 1. Read `Home` and the Handoff note.

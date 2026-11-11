@@ -25,6 +25,11 @@ A documentação fica num vault do Obsidian (`{{VAULT_DIR}}`), ligada por `[[wik
 7. **Commit e push a cada progresso** (junto da documentação viva). Commits só de docs adicionam apenas os docs.
 8. **Nunca commitar segredos** (chaves, tokens, credenciais, `.env`). O `.gitignore` deve protegê-los.
 9. **Datas** sempre em `AAAA-MM-DD`.
+10. **Código sem a empresa, em dois repositórios.** Em projeto feito para uma empresa:
+    - **Repositório do produto:** sem nome, logo, domínio, IP, servidor ou nome de pessoas da empresa. O que precisar citar a empresa vem de configuração editável depois de instalado. Os testes usam domínios `*.example`.
+    - **Repositório da empresa (privado):** o vault de operação, os inventários e os arquivos de marca.
+    - **A cada mudança:** os dois repositórios são atualizados na mesma tarefa, e o diff do produto passa pela lista de bloqueio da empresa antes do commit.
+11. **Mudança de regra é compartilhada.** Regra nova ou alterada vai para a skill `tech-lead-vault` e para este `CLAUDE.md`, e todas as outras sessões abertas recebem um aviso curto.
 
 ## O GitHub é o fluxo de trabalho
 A issue guarda o STATUS; o vault guarda o CONHECIMENTO. Ligue cada issue à sua nota de checklist/spec e vice-versa. As versões seguem SemVer (começando em {{VERSION}}); ver [[Fluxo de Desenvolvimento]].

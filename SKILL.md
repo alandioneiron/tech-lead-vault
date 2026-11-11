@@ -54,6 +54,26 @@ The generated `CLAUDE.md` is the contract future sessions load automatically. De
 7. **Commit + push after each progress step.**
 8. **Never commit secrets.**
 9. **Dates are `YYYY-MM-DD`.**
+10. **Organization-neutral product code, two repos.** For a project built for a company, the product repo carries no reference to the company. Company-specific material lives in a separate private company repo, and every change updates both repos in the same task. Details below.
+11. **Rule changes are shared.** When the user sets or changes a process rule, record it in this skill and the project's `CLAUDE.md`, and tell every other open Claude session. Details below.
+
+## Product repo and company repo (rules 10 and 11)
+
+Rule set by the user on 2026-11-11, for all projects.
+
+- **Product repo (no company in it):**
+  - no company name, logo, domains, IPs, server names or people's names in code, tests, docs, defaults or git history;
+  - anything that must name the company comes from configuration editable after install (an admin screen, or a config folder outside git), never hard-coded;
+  - tests use reserved example domains (`*.example`).
+- **Company repo (private):** keeps what belongs to the installation:
+  - the operations vault (handoff, journal, IPs, directory/AD details, people, decisions about that company);
+  - inventories, catalogs and branding files;
+  - the git history from before the split.
+- **Every change, both repos, same task:**
+  - code and generic docs go to the product repo, and living docs and operations notes go to the company repo;
+  - commit each one; push only with the user's OK, as usual.
+- **Before every product commit:** grep the staged diff against the company blocklist (names, domains, IP ranges), which is kept in the company repo. Old technical identifiers and published history change only with the user's decision.
+- **Rule changes (rule 11):** update this skill, meaning `SKILL.md`, `references/project-rules.md` and both `assets/*/CLAUDE.md`, plus the project's `CLAUDE.md`. Then send one short message to every other open session (list them, then message each), saying what changed and where it is written. When this skill is published in more than one place (the public generic repo and a copy inside a company's private plugin repo), update every copy in the same task: public first, then the copy, bumping its plugin version; push each only with the user's OK.
 
 ## Daily flows
 

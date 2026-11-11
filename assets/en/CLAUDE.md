@@ -25,6 +25,11 @@ The documentation lives in an Obsidian vault (`{{VAULT_DIR}}`), linked with `[[w
 7. **Commit and push after each progress step** (together with the living docs). Docs-only commits add only the docs.
 8. **Never commit secrets** (keys, tokens, credentials, `.env`). `.gitignore` must protect them.
 9. **Dates** are always `YYYY-MM-DD`.
+10. **Organization-neutral code, two repos.** In a project built for a company:
+    - **Product repo:** no company name, logo, domain, IP, server or people's names. What must name the company comes from configuration editable after install. Tests use `*.example` domains.
+    - **Company repo (private):** the operations vault, inventories and branding files.
+    - **On every change:** both repos are updated in the same task, and the product diff is checked against the company blocklist before each commit.
+11. **Rule changes are shared.** A new or changed rule goes into the `tech-lead-vault` skill and this `CLAUDE.md`, and every other open session gets a short message about it.
 
 ## GitHub is the workflow
 The issue holds the STATUS; the vault holds the KNOWLEDGE. Link each issue to its checklist/spec note and back. Release versions follow SemVer (starting at {{VERSION}}); see [[Dev to Production Flow]].
