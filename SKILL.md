@@ -57,6 +57,7 @@ The generated `CLAUDE.md` is the contract future sessions load automatically. De
 10. **Organization-neutral product code, two repos.** For a project built for a company, the product repo carries no reference to the company. Company-specific material lives in a separate private company repo, and every change updates both repos in the same task. Details below.
 11. **Rule changes are shared.** When the user sets or changes a process rule, record it in this skill and the project's `CLAUDE.md`, and tell every other open Claude session. Details below.
 12. **Front ends are tested end to end.** A UI change is done only when e2e tests pass, for example Playwright against the app or a mocked backend. Build, lint and manual screenshots are not enough. Visual changes update the screenshot baselines, and someone looks at them before the commit. Rule set by the user on 2026-11-11, for all projects.
+13. **Shared Docker Desktop.** Docker Desktop (and WSL) on the development machine is shared by several projects. Never restart it, and never start Docker Desktop without asking. Never stop, remove or change containers, images, volumes or networks of other projects. Prefix your own resources with the project name. Rule set by the user, added to the skill on 2026-11-16, for all projects.
 
 ## Product repo and company repo (rules 10 and 11)
 
